@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Mission</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<!--
+    mars_data = {
+        "title_stripped": title_stripped,
+        "text_stripped": text_stripped,
+        "featured_image_url": featured_image_url,
+        "facts_html": facts_html,
+        "titles[0]": titles[0],
+        "original_img_url_list[0]": original_img_url_list[0],
+        "titles[1]": titles[1],
+        "original_img_url_list[1]": original_img_url_list[1],
+        "titles[2]": titles[2],
+        "original_img_url_list[2]": original_img_url_list[2],
+        "titles[3]": titles[3],
+        "original_img_url_list[3]": original_img_url_list[3]
+    }
+-->
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+    <h3>Latest Mars News</h3>
+    <!-- TODO: Insert latest news headline here! -->
+    <h4> {{ mars.title_stripped }} </h4>
+    <h5> {{ mars.text_stripped }} </h5>
+    <h3>Featured Mars Image</h3>
+    <img src="{{ mars.featured_image_url }}" alt="Featured Mars Image">
+    <h5>Mars Facts</h5>
+    <!--
+    TODO: Insert Mars Facts Table here and align it to the right!
+    -->
+    <h5> {{mars.facts_html | safe }} </h5>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col"> {{ mars.original_img_url_list[0] }} </div>
+      <div class="col"> {{ mars.original_img_url_list[1] }} </div>
+      <div class="w-100"></div>
+      <div class="col"> {{ mars.original_img_url_list[2] }} </div>
+      <div class="col"> {{ mars.original_img_url_list[3] }} </div>
+    </div>
+  </div>
+  </div>
+</body>
+
+</html>
