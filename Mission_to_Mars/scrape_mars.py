@@ -76,8 +76,8 @@ def scrape_info():
     original_img_url_list =[]
 
     for title in titles:
-        # browser.click_link_by_partial_text(title)
-        browser.links.find_by_partial_text(title)
+        browser.click_link_by_partial_text(title)
+        # browser.links.find_by_partial_text(title)
         html = browser.html
         soup = BeautifulSoup(html, 'html.parser')
         link = soup.find('div', class_= 'downloads')('li')[1]
@@ -85,6 +85,16 @@ def scrape_info():
         original_img_url_list.append(orig_img)
         browser.back()
     
+    title1 = titles[0]
+    title2 = titles[1]
+    title3 = titles[2]
+    title4 = titles[3]
+
+    hem1 = original_img_url_list[0]
+    hem2 = original_img_url_list[1]
+    hem3 = original_img_url_list[2]
+    hem4 = original_img_url_list[3]
+
     # hemisphere_img_list = [
     #     {"title": titles[0], "img_url": original_img_url_list[0]},
     #     {"title": titles[1], "img_url": original_img_url_list[1]},
@@ -98,52 +108,16 @@ def scrape_info():
         "text_stripped": text_stripped,
         "featured_image_url": featured_image_url,
         "facts_html": facts_html,
-        "titles[0]": titles[0],
-        "original_img_url_list[0]": original_img_url_list[0],
-        "titles[1]": titles[1],
-        "original_img_url_list[1]": original_img_url_list[1],
-        "titles[2]": titles[2],
-        "original_img_url_list[2]": original_img_url_list[2],
-        "titles[3]": titles[3],
-        "original_img_url_list[3]": original_img_url_list[3]
+        "title1": title1,
+        "hem1": hem1,
+        "title2": title2,
+        "hem2": hem2,
+        "title3": title3,
+        "hem3": hem3,
+        "title4": title4,
+        "hem4": hem4
     }
 
     browser.quit()
 
     return mars_data
-
-    # # Visit visitcostarica.herokuapp.com
-    # url = "https://visitcostarica.herokuapp.com/"
-    # browser.visit(url)
-
-    # time.sleep(1)
-
-    # # Scrape page into Soup
-    # html = browser.html
-    # soup = bs(html, "html.parser")
-
-    # # Get the average temps
-    # avg_temps = soup.find('div', id='weather')
-
-    # # Get the min avg temp
-    # min_temp = avg_temps.find_all('strong')[0].text
-
-    # # Get the max avg temp
-    # max_temp = avg_temps.find_all('strong')[1].text
-
-    # # BONUS: Find the src for the sloth image
-    # relative_image_path = soup.find_all('img')[2]["src"]
-    # sloth_img = url + relative_image_path
-
-    # # Store data in a dictionary
-    # costa_data = {
-    #     "sloth_img": sloth_img,
-    #     "min_temp": min_temp,
-    #     "max_temp": max_temp
-    # }
-
-    # # Close the browser after scraping
-    # browser.quit()
-
-    # # Return results
-    # return costa_data

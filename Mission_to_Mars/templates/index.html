@@ -33,24 +33,51 @@
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
     <h3>Latest Mars News</h3>
-    <!-- TODO: Insert latest news headline here! -->
     <h4> {{ mars.title_stripped }} </h4>
     <h5> {{ mars.text_stripped }} </h5>
     <h3>Featured Mars Image</h3>
     <img src="{{ mars.featured_image_url }}" alt="Featured Mars Image">
-    <h5>Mars Facts</h5>
-    <!--
-    TODO: Insert Mars Facts Table here and align it to the right!
-    -->
-    <h5> {{mars.facts_html | safe }} </h5>
+    <div>
+      <h3 style="text-align: right;">Mars Facts</h3>
+      <h3 style="text-align: right;"> {{mars.facts_html | safe }} </h3>
+    </div>
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col"> {{ mars.original_img_url_list[0] }} </div>
-      <div class="col"> {{ mars.original_img_url_list[1] }} </div>
-      <div class="w-100"></div>
-      <div class="col"> {{ mars.original_img_url_list[2] }} </div>
-      <div class="col"> {{ mars.original_img_url_list[3] }} </div>
+  <div class="col-md-6">
+    <div class="thumbnail">
+      <a href="{{ mars.hem1 }}">
+        <img src="{{ mars.hem1 }}" alt={{ mars.title1 }} style="width:100%">
+        <div class="caption">
+          <p> {{ mars.title1 }} </p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="thumbnail">
+      <a href="{{ mars.hem2 }}">
+        <img src="{{ mars.hem2 }}" alt={{ mars.title2 }} style="width:100%">
+        <div class="caption">
+          <p> {{ mars.title1 }} </p>
+        </div>
+      </a>
+    </div>
+  </div><div class="col-md-6">
+    <div class="thumbnail">
+      <a href="{{ mars.hem3 }}">
+        <img src="{{ mars.hem3 }}" alt={{ mars.title3 }} style="width:100%">
+        <div class="caption">
+          <p> {{ mars.title1 }} </p>
+        </div>
+      </a>
+    </div>
+  </div><div class="col-md-6">
+    <div class="thumbnail">
+      <a href="{{ mars.hem4 }}">
+        <img src="{{ mars.hem4 }}" alt={{ mars.title4 }} style="width:100%">
+        <div class="caption">
+          <p> {{ mars.title4 }} </p>
+        </div>
+      </a>
     </div>
   </div>
   </div>
