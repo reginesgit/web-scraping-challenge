@@ -9,23 +9,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
-<!--
-    mars_data = {
-        "title_stripped": title_stripped,
-        "text_stripped": text_stripped,
-        "featured_image_url": featured_image_url,
-        "facts_html": facts_html,
-        "titles[0]": titles[0],
-        "original_img_url_list[0]": original_img_url_list[0],
-        "titles[1]": titles[1],
-        "original_img_url_list[1]": original_img_url_list[1],
-        "titles[2]": titles[2],
-        "original_img_url_list[2]": original_img_url_list[2],
-        "titles[3]": titles[3],
-        "original_img_url_list[3]": original_img_url_list[3]
-    }
--->
-
 <body>
   <div class="container-fluid">
     <div class="jumbotron text-center">
@@ -36,21 +19,17 @@
     <h4> {{ mars.title_stripped }} </h4>
     <h5> {{ mars.text_stripped }} </h5>
     <h3>Featured Mars Image</h3>
-    <img src="{{ mars.featured_image_url }}" alt="Featured Mars Image">
+    <img src={{ mars.featured_image_url }} alt="Featured Mars Image">
     <div>
       <h3 style="text-align: right;">Mars Facts</h3>
-      <h3 style="text-align: right;"> {{mars.facts_html | safe }} </h3>
+      <p style="text-align: right;"> {{mars.facts_html | safe }} </p>
     </div>
   </div>
   <div class="col-md-6">
-    <div class="thumbnail">
-      <a href="{{ mars.hem1 }}">
-        <img src="{{ mars.hem1 }}" alt={{ mars.title1 }} style="width:100%">
-        <div class="caption">
-          <p> {{ mars.title1 }} </p>
-        </div>
-      </a>
-    </div>
+    <img src={{ mars.hem1 }} alt={{ mars.title1 }} style="width:100%">
+      <div class="caption">
+        <p> {{ mars.title1 }} </p>
+      </div>
   </div>
   <div class="col-md-6">
     <div class="thumbnail">
