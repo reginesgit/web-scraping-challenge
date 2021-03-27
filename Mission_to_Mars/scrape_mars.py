@@ -12,6 +12,7 @@ def scrape_info():
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=False)
 
+
     ### NASA Mars News
     # URL of page to be scraped
     url = 'https://mars.nasa.gov/news/'
@@ -25,6 +26,7 @@ def scrape_info():
     # Variable for returned first article title, cleaned up
     title = soup.find('div', class_='content_title').a.text
     title_stripped = title.strip('\n')
+
 
     ### JPL Mars Space Images - Featured Image
     executable_path = {'executable_path': ChromeDriverManager().install()}
@@ -40,14 +42,18 @@ def scrape_info():
 
     browser.quit()
 
+
     ### Mars Facts
     facts_url = 'https://space-facts.com/mars/'
     facts_table = pd.read_html(facts_url)
     facts_df = facts_table[0]
     cleaned_facts_df = facts_df.rename(columns={0:" ", 1:"Mars"})
     cleaned_facts_df.set_index(" ")
-    facts_html = cleaned_facts_df.to_html('html_facts_table.html')
-    final_facts = facts_html.replace('\n', '')
+    cleaned_facts_df.to_html('html_facts_table.html')
+    facts_html = cleaned_facts_df.to_html()
+    facts_html.replace('\n', '')
+
+
 
     ### Mars Hemispheres
     executable_path = {'executable_path': ChromeDriverManager().install()}
@@ -87,19 +93,14 @@ def scrape_info():
     hem3 = original_img_url_list[2]
     hem4 = original_img_url_list[3]
 
-    # hem4string = urllib.parse.quote(hem4)
-    print(title4)
-    print(hem4)
-    # print(hem4string)
-    print(title2)
-    print(hem2)
-    
-    # # Store data in a dictionary
+
+
+    # # Store data in a dictionary to be returned
     mars_data = {
         "title_stripped": title_stripped,
         "text_stripped": text_stripped,
         "featured_image_url": featured_image_url,
-        "facts_html": final_facts,
+        "facts_html": facts_html,
         "title1": title1,
         "hem1": hem1,
         "title2": title2,

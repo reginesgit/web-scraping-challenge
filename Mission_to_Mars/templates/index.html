@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mars Mission</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -15,16 +16,52 @@
       <h1>Mission to Mars</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
+  </div>
+  <div class="col-md-6">
     <h3>Latest Mars News</h3>
     <h4> {{ mars.title_stripped }} </h4>
     <h5> {{ mars.text_stripped }} </h5>
     <h3>Featured Mars Image</h3>
     <img src={{ mars.featured_image_url }} alt="Featured Mars Image">
-    <div style="text-align: right;">
-      <h3 style="text-align: right;">Mars Facts</h3>
-      <p style="text-align: right;"> {{mars.facts_html | safe }} </p>
-    </div>
   </div>
+  <div class="col-md-6">
+    <h3 >Mars Facts</h3>
+    <p > {{mars.facts_html | safe }} </p>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <div class="col-md-6">
     <div class="thumbnail">
       <a href={{ mars.hem1 }}>
@@ -55,8 +92,8 @@
     </div>
   </div><div class="col-md-6">
     <div class="thumbnail">
-      <a href=#>
-        <img src="https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg" alt="Foo" style="width:100%">
+      <a href={{ mars.hem4 }}>
+        <img src={{ mars.hem4 }} alt={{ mars.title4 }} style="width:100%">
         <div class="caption">
           <p> {{ mars.title4 }} </p>
         </div>
