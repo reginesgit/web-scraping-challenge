@@ -4,6 +4,7 @@ import time
 from webdriver_manager.chrome import ChromeDriverManager
 import requests
 import pandas as pd
+import urllib.parse
 
 
 def scrape_info():
@@ -35,7 +36,7 @@ def scrape_info():
 
     # Retrieve image path and append it to the site path for complete link to image
     featuredimagepath = soup.find('a', class_='showimg fancybox-thumbs')['href']
-    featured_image_url = ['https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/' + featuredimagepath]
+    featured_image_url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/' + featuredimagepath
 
     browser.quit()
 
@@ -45,10 +46,8 @@ def scrape_info():
     facts_df = facts_table[0]
     cleaned_facts_df = facts_df.rename(columns={0:" ", 1:"Mars"})
     cleaned_facts_df.set_index(" ")
-    facts_html = cleaned_facts_df.to_html()
-    facts_html.replace('\n', '')
-
-    # cleaned_facts_df.to_html('html_facts_table.html')
+    facts_html = cleaned_facts_df.to_html('html_facts_table.html')
+    final_facts = facts_html.replace('\n', '')
 
     ### Mars Hemispheres
     executable_path = {'executable_path': ChromeDriverManager().install()}
@@ -62,29 +61,22 @@ def scrape_info():
     items = soup.find_all('div', class_='item')
 
     titles = []
-    url_list = []
-    img_url_list = []
 
     for item in items:
         title = item.find('h3').text
         titles.append(title)
-        img_url = item.find('a')['href']
-        url_list.append(img_url)
-
-    img_url_list = ['https://astrogeology.usgs.gov/' + url for url in url_list]
 
     original_img_url_list =[]
 
     for title in titles:
         browser.click_link_by_partial_text(title)
-        # browser.links.find_by_partial_text(title)
         html = browser.html
         soup = BeautifulSoup(html, 'html.parser')
-        link = soup.find('div', class_= 'downloads')('li')[1]
+        link = soup.find('div', class_= 'downloads')('li')[0]
         orig_img = link.find('a')['href']
         original_img_url_list.append(orig_img)
         browser.back()
-    
+
     title1 = titles[0]
     title2 = titles[1]
     title3 = titles[2]
@@ -95,19 +87,19 @@ def scrape_info():
     hem3 = original_img_url_list[2]
     hem4 = original_img_url_list[3]
 
-    # hemisphere_img_list = [
-    #     {"title": titles[0], "img_url": original_img_url_list[0]},
-    #     {"title": titles[1], "img_url": original_img_url_list[1]},
-    #     {"title": titles[2], "img_url": original_img_url_list[2]},
-    #     {"title": titles[3], "img_url": original_img_url_list[3]}
-    # ]
-
+    # hem4string = urllib.parse.quote(hem4)
+    print(title4)
+    print(hem4)
+    # print(hem4string)
+    print(title2)
+    print(hem2)
+    
     # # Store data in a dictionary
     mars_data = {
         "title_stripped": title_stripped,
         "text_stripped": text_stripped,
         "featured_image_url": featured_image_url,
-        "facts_html": facts_html,
+        "facts_html": final_facts,
         "title1": title1,
         "hem1": hem1,
         "title2": title2,
